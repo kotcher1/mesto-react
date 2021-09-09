@@ -7,6 +7,7 @@ class PopupWithForm extends React.Component {
     this.title = props.title;
     this.name = props.name;
     this.children = props.children;
+    this.buttonTitle = props.buttonTitle;
   }
 
   render() {
@@ -19,7 +20,7 @@ class PopupWithForm extends React.Component {
           <form className="popup__form" name={`${this.name}`}>
             {this.children}
             <button type="submit" className="popup__submit">
-              Сохранить
+              {this.buttonTitle}
             </button>
           </form>
           <button className="popup__close-button" type="button">
