@@ -5,7 +5,12 @@ import ImageForm from './ImageForm'
 
 class Main extends React.Component {
 
-
+  constructor(props) {
+    super(props);
+    this.handleEditAvatarClick = props.onEditAvatar;
+    this.handleEditProfileClick = props.onEditProfile;
+    this.handleAddPlaceClick = props.onAddPlace;
+  }
 
   render() {
 
