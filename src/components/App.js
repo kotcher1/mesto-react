@@ -5,23 +5,42 @@ import React from 'react';
 
 class App extends React.Component  {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isEditProfilePopupOpen: false,
+      isAddPlacePopupOpen: false,
+      isEditAvatarPopupOpen: false,
+    }
+  }
+
   handleEditAvatarClick = () => {
-    document.querySelector('.popup_type_avatar').classList.add('popup_opened');
+    this.setState({ isEditAvatarPopupOpen: true });
+    // document.querySelector('.popup_type_avatar').classList.add('popup_opened');
   }
 
   handleEditProfileClick = () => {
-    document.querySelector('.popup_type_edit').classList.add('popup_opened');
+    this.setState({ isEditProfilePopupOpen: true });
+    // document.querySelector('.popup_type_edit').classList.add('popup_opened');
   }
 
   handleAddPlaceClick = () => {
-    document.querySelector('.popup_type_add').classList.add('popup_opened');
+    this.setState({ isAddPlacePopupOpen: true });
+    // document.querySelector('.popup_type_add').classList.add('popup_opened');
   }
+
+  
 
   render() {
     return (
-      <body className="page">
+      <div className="page">
         <Header/>
-        <Main onEditProfile={this.handleEditProfileClick} onAddPlace={this.handleAddPlaceClick} onEditAvatar={this.handleEditAvatarClick}/>
+        <Main onEditProfile={this.handleEditProfileClick} 
+              onAddPlace={this.handleAddPlaceClick} 
+              onEditAvatar={this.handleEditAvatarClick}
+              isEditAvatarPopupOpen={this.state.isEditAvatarPopupOpen}
+              isEditProfilePopupOpen={this.state.isEditProfilePopupOpen}
+              isAddPlacePopupOpen={this.state.isAddPlacePopupOpen}/>
         <Footer />
         <template id="card-template">
           <div className="places__card">
@@ -42,7 +61,7 @@ class App extends React.Component  {
             </button>
           </div>
         </template>
-      </body>
+      </div>
     );
   }
 

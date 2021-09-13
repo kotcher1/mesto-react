@@ -10,9 +10,15 @@ class Main extends React.Component {
     this.handleEditAvatarClick = props.onEditAvatar;
     this.handleEditProfileClick = props.onEditProfile;
     this.handleAddPlaceClick = props.onAddPlace;
+    this.isEditAvatarPopupOpen = props.isEditAvatarPopupOpen;
+    this.isEditProfilePopupOpen = props.isEditProfilePopupOpen;
+    this.isAddPlacePopupOpen = props.isAddPlacePopupOpen;
+    console.log(props)
   }
 
   render() {
+
+    console.log(this, 'this')
 
     return (
       <main>
@@ -41,25 +47,25 @@ class Main extends React.Component {
       </section>
       <section className="places">
       </section>
-      <PopupWithForm title='Редактировать профиль' name='edit' buttonTitle='Сохранить'>
-        <input className="popup__input" type="text" value="Жак-Ив Кусто" placeholder="Имя" id="name" name="fullname" required minlength="2" maxlength="40" />
+      <PopupWithForm title='Редактировать профиль' name='edit' buttonTitle='Сохранить' isOpen={this.isEditProfilePopupOpen}>
+        <input className="popup__input" type="text" defaultValue="Жак-Ив Кусто" placeholder="Имя" id="name" name="fullname" required minLength="2" maxLength="40" />
         <span className="popup__input-error">
         </span>
-        <input className="popup__input" type="text" value="Исследователь океана" placeholder="Род деятельности" id="job" name="job" required minlength="2" maxlength="200" />
-        <span className="popup__input-error">
-        </span>
-      </PopupWithForm>
-      <PopupWithForm title='Новое место' name='add' buttonTitle='Создать'>
-        <input className="popup__input" type="text" value="" placeholder="Название" id="pictureName" name="pictureName" minlength="2" maxlength="30" required />
-        <span className="popup__input-error">
-        </span>
-        <input className="popup__input" type="url" value="" placeholder="Ссылка на картинку" id="link" name="link" required />
+        <input className="popup__input" type="text" defaultValue="Исследователь океана" placeholder="Род деятельности" id="job" name="job" required minLength="2" maxLength="200" />
         <span className="popup__input-error">
         </span>
       </PopupWithForm>
-      <PopupWithForm title='Вы уыерены?' name='delete' buttonTitle='Да'/>
-      <PopupWithForm title='Обновить аватар' name='avatar' buttonTitle='Сохранить'>
-        <input className="popup__input" type="url" value="" placeholder="Ссылка" id="pictureLink" name="link" required />
+      <PopupWithForm title='Новое место' name='add' buttonTitle='Создать' isOpen={this.isAddPlacePopupOpen}>
+        <input className="popup__input" type="text" defaultValue="" placeholder="Название" id="pictureName" name="pictureName" minLength="2" maxLength="30" required />
+        <span className="popup__input-error">
+        </span>
+        <input className="popup__input" type="url" defaultValue="" placeholder="Ссылка на картинку" id="link" name="link" required />
+        <span className="popup__input-error">
+        </span>
+      </PopupWithForm>
+      <PopupWithForm title='Вы уверены?' name='delete' buttonTitle='Да'/>
+      <PopupWithForm title='Обновить аватар' name='avatar' buttonTitle='Сохранить' isOpen={this.isEditAvatarPopupOpen}>
+        <input className="popup__input" type="url" defaultValue="" placeholder="Ссылка" id="pictureLink" name="link" required />
         <span className="popup__input-error">
         </span>
       </PopupWithForm>
