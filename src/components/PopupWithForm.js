@@ -8,15 +8,12 @@ class PopupWithForm extends React.Component {
     this.name = props.name;
     this.children = props.children;
     this.buttonTitle = props.buttonTitle;
-    this.state = {
-      isOpen: props.isOpen,
-    }
+    this.onClose = props.onClose;
   }
 
   render() {
-    console.log(this.state.isOpen, 'jjjj')
     return (
-      <section className={`popup popup_type_${this.name} ${this.state.isOpen === true ? 'popup_opened' : ''}`}>
+      <section className={`popup popup_type_${this.name} ${this.props.isOpen === true ? 'popup_opened' : ''}`}>
         <div className="popup__container">
           <h2 className="popup__title">
             {this.title}
@@ -27,7 +24,7 @@ class PopupWithForm extends React.Component {
               {this.buttonTitle}
             </button>
           </form>
-          <button className="popup__close-button" type="button">
+          <button className="popup__close-button" type="button" onClick={this.onClose}>
           </button>
         </div>
       </section>

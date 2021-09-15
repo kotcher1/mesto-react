@@ -11,25 +11,29 @@ class App extends React.Component  {
       isEditProfilePopupOpen: false,
       isAddPlacePopupOpen: false,
       isEditAvatarPopupOpen: false,
+      selectedCard: '',
     }
   }
 
   handleEditAvatarClick = () => {
     this.setState({ isEditAvatarPopupOpen: true });
-    // document.querySelector('.popup_type_avatar').classList.add('popup_opened');
   }
 
   handleEditProfileClick = () => {
     this.setState({ isEditProfilePopupOpen: true });
-    // document.querySelector('.popup_type_edit').classList.add('popup_opened');
   }
 
   handleAddPlaceClick = () => {
     this.setState({ isAddPlacePopupOpen: true });
-    // document.querySelector('.popup_type_add').classList.add('popup_opened');
   }
 
-  
+  closeAllPopups = () => {
+    this.setState({ isAddPlacePopupOpen: false, isEditProfilePopupOpen: false, isEditAvatarPopupOpen: false, selectedCard: ''});
+  }
+
+  handleCardClick = (card) => {
+    this.setState({ selectedCard: card.link });
+  }
 
   render() {
     return (
@@ -40,7 +44,10 @@ class App extends React.Component  {
               onEditAvatar={this.handleEditAvatarClick}
               isEditAvatarPopupOpen={this.state.isEditAvatarPopupOpen}
               isEditProfilePopupOpen={this.state.isEditProfilePopupOpen}
-              isAddPlacePopupOpen={this.state.isAddPlacePopupOpen}/>
+              isAddPlacePopupOpen={this.state.isAddPlacePopupOpen}
+              isCardSelected={this.state.selectedCard}
+              closeAllPopups={this.closeAllPopups}
+              onOpenPopup={this.handleCardClick}/>
         <Footer />
         <template id="card-template">
           <div className="places__card">
