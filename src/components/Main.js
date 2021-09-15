@@ -15,8 +15,8 @@ class Main extends React.Component {
     this.closeAllPopups = props.closeAllPopups;
     this.handleCardClick = props.onOpenPopup;
     this.state = {
-      userName: 'Жак-Ив Кусто',
-      userDescription: 'Исследователь океана',
+      userName: '',
+      userDescription: '',
       userAvatar: avatar,
       cards: [],
     }
