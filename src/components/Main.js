@@ -74,10 +74,10 @@ class Main extends React.Component {
         })}
       </section>
       <PopupWithForm title='Редактировать профиль' name='edit' buttonTitle='Сохранить'isOpen={this.props.isEditProfilePopupOpen} onClose={this.closeAllPopups}>
-        <input className="popup__input" type="text" defaultValue={this.state.userName} placeholder="Имя" id="name" name="fullname" required minLength="2" maxLength="40" />
+        <input className="popup__input" type="text" defaultValue="" placeholder="Имя" id="name" name="fullname" required minLength="2" maxLength="40" />
         <span className="popup__input-error">
         </span>
-        <input className="popup__input" type="text" defaultValue={this.state.userDescription} placeholder="Род деятельности" id="job" name="job" required minLength="2" maxLength="200" />
+        <input className="popup__input" type="text" defaultValue="" placeholder="Род деятельности" id="job" name="job" required minLength="2" maxLength="200" />
         <span className="popup__input-error">
         </span>
       </PopupWithForm>
