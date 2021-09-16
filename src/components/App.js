@@ -11,7 +11,7 @@ class App extends React.Component  {
       isEditProfilePopupOpen: false,
       isAddPlacePopupOpen: false,
       isEditAvatarPopupOpen: false,
-      selectedCard: '',
+      selectedCard: {},
     }
   }
 
@@ -28,11 +28,11 @@ class App extends React.Component  {
   }
 
   closeAllPopups = () => {
-    this.setState({ isAddPlacePopupOpen: false, isEditProfilePopupOpen: false, isEditAvatarPopupOpen: false, selectedCard: ''});
+    this.setState({ isAddPlacePopupOpen: false, isEditProfilePopupOpen: false, isEditAvatarPopupOpen: false, selectedCard: {}});
   }
 
   handleCardClick = (card) => {
-    this.setState({ selectedCard: card.link });
+    this.setState({ selectedCard: card });
   }
 
   render() {
