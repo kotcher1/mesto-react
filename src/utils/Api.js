@@ -57,6 +57,7 @@ class Api {
       headers: this._options.headers,
     })
     .then(res => this._checkAnswer(res))
+    .then(res => this._parseResponse(res))
   }
 
   changeAvatar(link) {

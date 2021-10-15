@@ -43,3 +43,4 @@
 @import url(./blocks/places/__like-number/places__like-number.css);
 @import url(./blocks/profile/__avatar-block/profile__avatar-block.css);
 @import url(./blocks/profile/__avatar-button/profile__avatar-button.css);
+@import url(./blocks/places/__delete-button/_hidden/places__delete-button_hidden.css)

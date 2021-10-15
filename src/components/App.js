@@ -18,6 +18,8 @@ class App extends React.Component  {
     }
   }
 
+
+
   handleEditAvatarClick = () => {
     this.setState({ isEditAvatarPopupOpen: true });
   }
