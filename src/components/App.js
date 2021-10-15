@@ -18,8 +18,6 @@ class App extends React.Component  {
     }
   }
 
-
-
   handleEditAvatarClick = () => {
     this.setState({ isEditAvatarPopupOpen: true });
   }
@@ -38,6 +36,22 @@ class App extends React.Component  {
 
   handleCardClick = (card) => {
     this.setState({ selectedCard: card });
+  }
+
+  handleUpdateUser = ({name, about}) => {
+    api.setUserInfo(name, about)
+      .then((user) => {
+        this.setState({currentUser: user});
+        this.closeAllPopups();
+      })
+  }
+
+  handleUpdateAvatar = ({avatar}) => {
+    api.changeAvatar(avatar)
+      .then((user) => {
+        this.setState({currentUser: user});
+        this.closeAllPopups();
+      })
   }
 
   getUserInfo() {
@@ -64,7 +78,9 @@ class App extends React.Component  {
                 isAddPlacePopupOpen={this.state.isAddPlacePopupOpen}
                 isCardSelected={this.state.selectedCard}
                 closeAllPopups={this.closeAllPopups}
-                onOpenPopup={this.handleCardClick}/>
+                onOpenPopup={this.handleCardClick}
+                onUpdateUser={this.handleUpdateUser}
+                onUpdateAvatar={this.handleUpdateAvatar}/>
           <Footer />
           <template id="card-template">
             <div className="places__card">

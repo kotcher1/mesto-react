@@ -29,6 +29,7 @@ class Api {
       })
     })
     .then(res => this._checkAnswer(res))
+    .then(res => this._parseResponse(res))
   }
 
   addCard(cardName, cardLink) {
@@ -69,6 +70,7 @@ class Api {
       })
     })
     .then(res => this._checkAnswer(res))
+    .then(res => this._parseResponse(res))
   }
 
   _checkAnswer(res) {

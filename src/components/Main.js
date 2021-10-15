@@ -1,5 +1,7 @@
 import React from 'react'
 import PopupWithForm from './PopupWithForm'
+import EditProfilePopup from './EditProfilePopup'
+import EditAvatarPopup from './EditAvatarPopup'
 import ImagePopup from './ImagePopup'
 import Card from './Card'
 import {api} from '../utils/Api.js'
@@ -14,6 +16,8 @@ class Main extends React.Component {
     this.handleAddPlaceClick = props.onAddPlace;
     this.closeAllPopups = props.closeAllPopups;
     this.handleCardClick = props.onOpenPopup;
+    this.onUpdateUser = props.onUpdateUser;
+    this.onUpdateAvatar = props.onUpdateAvatar;
     this.state = {
       cards: [],
     }
@@ -83,14 +87,7 @@ class Main extends React.Component {
             )
           })}
         </section>
-        <PopupWithForm title='Редактировать профиль' name='edit' buttonTitle='Сохранить'isOpen={this.props.isEditProfilePopupOpen} onClose={this.closeAllPopups}>
-          <input className="popup__input" type="text" defaultValue="" placeholder="Имя" id="name" name="fullname" required minLength="2" maxLength="40" />
-          <span className="popup__input-error">
-          </span>
-          <input className="popup__input" type="text" defaultValue="" placeholder="Род деятельности" id="job" name="job" required minLength="2" maxLength="200" />
-          <span className="popup__input-error">
-          </span>
-        </PopupWithForm>
+        <EditProfilePopup onUpdateUser={this.onUpdateUser} isOpen={this.props.isEditProfilePopupOpen} onClose={this.closeAllPopups} />
         <PopupWithForm title='Новое место' name='add' buttonTitle='Создать' isOpen={this.props.isAddPlacePopupOpen} onClose={this.closeAllPopups}>
           <input className="popup__input" type="text" defaultValue="" placeholder="Название" id="pictureName" name="pictureName" minLength="2" maxLength="30" required />
           <span className="popup__input-error">
@@ -100,11 +97,7 @@ class Main extends React.Component {
           </span>
         </PopupWithForm>
         <PopupWithForm title='Вы уверены?' name='delete' buttonTitle='Да' onClose={this.closeAllPopups}/>
-        <PopupWithForm title='Обновить аватар' name='avatar' buttonTitle='Сохранить' isOpen={this.props.isEditAvatarPopupOpen} onClose={this.closeAllPopups}>
-          <input className="popup__input" type="url" defaultValue="" placeholder="Ссылка" id="pictureLink" name="link" required />
-          <span className="popup__input-error">
-          </span>
-        </PopupWithForm>
+        <EditAvatarPopup onUpdateAvatar={this.onUpdateAvatar} isOpen={this.props.isEditAvatarPopupOpen} onClose={this.closeAllPopups} />
         <ImagePopup card={this.props.isCardSelected} onClose={this.closeAllPopups}/>
       </main>
     )
