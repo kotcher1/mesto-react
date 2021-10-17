@@ -15,7 +15,31 @@ class App extends React.Component  {
       isEditAvatarPopupOpen: false,
       selectedCard: {},
       currentUser: {},
+      cards: [],
     }
+  }
+
+  getCard() {
+    api.getInitialCards()
+    .then((apiCards) => {
+      this.setState({cards: apiCards})
+    })
+  }
+
+  handleCardLike = (card) => {
+    const isLiked = card.likes.some(i => i._id === this.state.currentUser._id);
+    const apiMethod = isLiked ? "DELETE" : "PUT";
+    api.likeCard(card._id, apiMethod)
+    .then((newCard) => {
+      this.setState({cards: this.state.cards.map((c) => c._id === card._id ? newCard : c)});
+    });
+  } 
+
+  handleCardDelete = (card) => {
+    api.deleteCard(card._id)
+    .then(() => {
+      this.setState({cards: this.state.cards.filter((c) => c._id !== card._id)});
+    })
   }
 
   handleEditAvatarClick = () => {
@@ -54,6 +78,15 @@ class App extends React.Component  {
       })
   }
 
+  handleAddPlaceSubmit = ({cardName, cardLink}) => {
+    api.addCard(cardName, cardLink)
+      .then((newCard) => {
+        this.setState({cards: [newCard, ...this.state.cards]});
+        console.log(this.state.cards);
+        this.closeAllPopups();
+      })
+  }
+
   getUserInfo() {
     api.getUserInfo()
       .then((user) => {
@@ -63,6 +96,7 @@ class App extends React.Component  {
 
   componentDidMount() {
     this.getUserInfo();
+    this.getCard();
   }
 
   render() {
@@ -80,7 +114,11 @@ class App extends React.Component  {
                 closeAllPopups={this.closeAllPopups}
                 onOpenPopup={this.handleCardClick}
                 onUpdateUser={this.handleUpdateUser}
-                onUpdateAvatar={this.handleUpdateAvatar}/>
+                onUpdateAvatar={this.handleUpdateAvatar}
+                cards={this.state.cards}
+                onCardLike={this.handleCardLike}
+                onCardDelete={this.handleCardDelete}
+                onAddCard={this.handleAddPlaceSubmit}/>
           <Footer />
           <template id="card-template">
             <div className="places__card">

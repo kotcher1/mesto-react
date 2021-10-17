@@ -35,7 +35,6 @@ class EditProfilePopup extends React.Component {
 
     return (
       <PopupWithForm onSubmit={this.handleSubmit}  title='Редактировать профиль' name='edit' buttonTitle='Сохранить' isOpen={this.props.isOpen} onClose={this.props.onClose}>
-        {console.log(this.state)}
         <input className="popup__input" type="text" defaultValue={this.context.name} placeholder="Имя" id="name" name="fullname" required minLength="2" maxLength="40" onChange={this.handleNameChange}/>
         <span className="popup__input-error">
         </span>

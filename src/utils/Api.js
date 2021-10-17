@@ -42,6 +42,7 @@ class Api {
       })
     })
     .then(res => this._checkAnswer(res))
+    .then(res => this._parseResponse(res))
   }
 
   deleteCard(cardId) {

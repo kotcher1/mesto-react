@@ -13,7 +13,6 @@ class EditAvatarPopup extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.avatarRef.current.value)
     this.props.onUpdateAvatar({
       avatar: this.avatarRef.current.value,
     });
