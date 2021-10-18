@@ -53,9 +53,9 @@ class Main extends React.Component {
           </button>
         </section>
         <section className="places">
-          {this.props.cards.map((card, index) => {
+          {this.props.cards.map((card) => {
             return (
-              <Card card={card} key={index + 1} onCardClick={this.handleCardClick} onCardLike={this.onCardLike} onCardDelete={this.onCardDelete}/>
+              <Card card={card} key={card._id} onCardClick={this.handleCardClick} onCardLike={this.onCardLike} onCardDelete={this.onCardDelete}/>
             )
           })}
         </section>
@@ -63,7 +63,7 @@ class Main extends React.Component {
         <AddPlacePopup onAddCard={this.props.onAddCard} isOpen={this.props.isAddPlacePopupOpen} onClose={this.closeAllPopups}/>
         <PopupWithForm title='Вы уверены?' name='delete' buttonTitle='Да' onClose={this.closeAllPopups}/>
         <EditAvatarPopup onUpdateAvatar={this.onUpdateAvatar} isOpen={this.props.isEditAvatarPopupOpen} onClose={this.closeAllPopups} />
-        <ImagePopup card={this.props.isCardSelected} onClose={this.closeAllPopups}/>
+        <ImagePopup card={this.props.selectedCard} onClose={this.closeAllPopups}/>
       </main>
     )
   }

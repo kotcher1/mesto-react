@@ -23,6 +23,8 @@ class App extends React.Component  {
     api.getInitialCards()
     .then((apiCards) => {
       this.setState({cards: apiCards})
+    }).catch((err) => {
+      console.log(err);
     })
   }
 
@@ -31,14 +33,19 @@ class App extends React.Component  {
     const apiMethod = isLiked ? "DELETE" : "PUT";
     api.likeCard(card._id, apiMethod)
     .then((newCard) => {
-      this.setState({cards: this.state.cards.map((c) => c._id === card._id ? newCard : c)});
+      this.setState((state) => ({
+        cards: state.cards.map((c) => (c._id === card._id ? newCard : c)),
+      }));
     });
   } 
 
   handleCardDelete = (card) => {
     api.deleteCard(card._id)
     .then(() => {
-      this.setState({cards: this.state.cards.filter((c) => c._id !== card._id)});
+      this.setState((state) => ({
+        cards: state.cards.filter((c) => c._id !== card._id)}));
+    }).catch((err) => {
+      console.log(err);
     })
   }
 
@@ -67,6 +74,8 @@ class App extends React.Component  {
       .then((user) => {
         this.setState({currentUser: user});
         this.closeAllPopups();
+      }).catch((err) => {
+        console.log(err);
       })
   }
 
@@ -75,6 +84,8 @@ class App extends React.Component  {
       .then((user) => {
         this.setState({currentUser: user});
         this.closeAllPopups();
+      }).catch((err) => {
+        console.log(err);
       })
   }
 
@@ -82,8 +93,9 @@ class App extends React.Component  {
     api.addCard(cardName, cardLink)
       .then((newCard) => {
         this.setState({cards: [newCard, ...this.state.cards]});
-        console.log(this.state.cards);
         this.closeAllPopups();
+      }).catch((err) => {
+        console.log(err);
       })
   }
 
@@ -91,6 +103,8 @@ class App extends React.Component  {
     api.getUserInfo()
       .then((user) => {
         this.setState({currentUser: user});
+      }).catch((err) => {
+        console.log(err);
       })
   }
 
@@ -110,7 +124,7 @@ class App extends React.Component  {
                 isEditAvatarPopupOpen={this.state.isEditAvatarPopupOpen}
                 isEditProfilePopupOpen={this.state.isEditProfilePopupOpen}
                 isAddPlacePopupOpen={this.state.isAddPlacePopupOpen}
-                isCardSelected={this.state.selectedCard}
+                selectedCard={this.state.selectedCard}
                 closeAllPopups={this.closeAllPopups}
                 onOpenPopup={this.handleCardClick}
                 onUpdateUser={this.handleUpdateUser}
@@ -120,25 +134,6 @@ class App extends React.Component  {
                 onCardDelete={this.handleCardDelete}
                 onAddCard={this.handleAddPlaceSubmit}/>
           <Footer />
-          <template id="card-template">
-            <div className="places__card">
-              <img className="places__image" src="#" alt=" " />
-              <div className="places__name-line">
-                <p className="places__name">
-                </p>
-                <div className="places__like-container">
-                  <div className="places__like">
-            
-                  </div>
-                  <p className="places__like-number">
-                    0
-                  </p>
-                </div>
-              </div>
-              <button className="places__delete-button" type="button">
-              </button>
-            </div>
-          </template>
         </div>
       </CurrentUserContext.Provider>
     );
