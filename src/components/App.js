@@ -36,7 +36,9 @@ class App extends React.Component  {
       this.setState((state) => ({
         cards: state.cards.map((c) => (c._id === card._id ? newCard : c)),
       }));
-    });
+    }).catch((err) => {
+      console.log(err);
+    })
   } 
 
   handleCardDelete = (card) => {
